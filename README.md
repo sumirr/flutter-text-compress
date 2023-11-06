@@ -63,15 +63,15 @@ class CourseProgressWidget extends StatelessWidget {
             children: [
               Expanded(
                 child: LinearProgressIndicator(
-                  backgroundColor: Colors.grey[200], // set the background color
+                  backgroundColor: Colors.grey[200], 
                   valueColor: AlwaysStoppedAnimation<Color>(
-                      Colors.green), // set the value color
+                      Colors.green), 
                   value: completedModules / (allLessons != 0 ? allLessons : 1),
                 ),
               ),
               SizedBox(
                   width:
-                      10), // Added to provide some spacing between the progress bar and the icon
+                      10), 
               Icon(Icons.more_vert),
             ],
           ),
