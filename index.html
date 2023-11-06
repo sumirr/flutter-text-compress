@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Processor</title>
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body { padding-top: 20px; }
+        .word-count, .char-count { margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Text Processor</h1>
+        <div class="form-group">
+            <label for="inputText">Enter your text:</label>
+            <textarea class="form-control" id="inputText" rows="6"></textarea>
+            <button class="btn btn-primary mt-3" id="processBtn">Process Text</button>
+        </div>
+        <div class="form-group">
+            <label for="outputText1">Processed Output (1st part):</label>
+            <textarea class="form-control" id="outputText1" rows="6" readonly></textarea>
+            <p class="word-count" id="wordCount1"></p>
+            <p class="char-count" id="charCount1"></p>
+        </div>
+        <div class="form-group">
+            <label for="outputText2">Processed Output (2nd part):</label>
+            <textarea class="form-control" id="outputText2" rows="6" readonly></textarea>
+            <p class="word-count" id="wordCount2"></p>
+            <p class="char-count" id="charCount2"></p>
+        </div>
+
+        <div class="form-group">
+            <label for="charLimit">Set Character Limit:</label>
+            <input type="number" id="charLimit" class="form-control" value="15000">
+            <small class="form-text text-muted">Enter the maximum number of characters for the first part of the text.</small>
+</div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+    function processAndDisplayCounts(inputText, charLimit) {
+        let processedText = inputText.replace(/[\s\r\n]+/g, '');
+
+       
+        let wordCount = (processedText.match(/\w+/g) || []).length;
+
+       
+        let outputText1 = processedText.substring(0, charLimit);
+        let outputText2 = processedText.substring(charLimit);
+
+       
+        $('#outputText1').val(outputText1);
+        $('#wordCount1').text('Word Count: ' + (outputText1.match(/\w+/g) || []).length);
+        $('#charCount1').text('Character Count: ' + outputText1.length);
+
+       
+        $('#outputText2').val(outputText2);
+        $('#wordCount2').text('Word Count: ' + (outputText2.match(/\w+/g) || []).length);
+        $('#charCount2').text('Character Count: ' + outputText2.length);
+
+        return processedText;
+    }
+
+    $(document).ready(function() {
+        $('#processBtn').click(function() {
+            let inputText = $('#inputText').val();
+            let charLimit = parseInt($('#charLimit').val(), 10);
+
+            charLimit = isNaN(charLimit) ? 15000 : charLimit;
+
+            processAndDisplayCounts(inputText, charLimit);
+        });
+    });
+</script>
+
+</body>
+</html>
