@@ -1,5 +1,9 @@
 # Text Processor README
 
+## URL
+[Text Compression App](https://sumirr.github.io/flutter-text-compress/)
+
+
 ## Purpose
 Takes a flutter ui file that extends multiple lines, and removes whitespaces to enable the user to parse the file to gpt.
 
